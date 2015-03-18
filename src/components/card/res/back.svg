@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 600 500" preserveAspectRatio="xMinYMin slice">
+<title>C pattern 1 - tenno-seremel.deviantart.com</title>
+<defs>
+	<pattern id="ornament" x="0" y="0" width="60" height="50" viewBox="0 0 600 500" patternUnits="userSpaceOnUse">
+		<g stroke="#000" stroke-width="5" stroke-linecap="square" fill="none">
+			<path d="M0,0 l250,250 -200,200 -50,-50 m0,-100 l50,50 100,-100 -150,-150 m0,100 l50,50 m50,-250 l200,200 150,-150 -50,-50 m-200,0 l100,100 50,-50 m150,-50 l50,50 -450,450 m100,0 l150,-150 150,150 m-100,0 l-50,-50 -50,50 m300,0 l-200,-200 200,-200 m0,100 l-100,100 100,100"/>
+			<path d="M-50,450 l100,100"/>
+			<path d="M550,-50 l100,100"/>
+		</g>
+	</pattern>
+</defs>
+<rect x="0" y="0" width="600" height="500" fill="url(#ornament)"/>
+</svg>

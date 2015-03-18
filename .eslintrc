@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "React": true,
+    "Card": true,
+    "transform": true,
+    "m", true
+  },
+  "rules": {}
+}

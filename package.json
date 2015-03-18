@@ -1,0 +1,23 @@
+{
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neftaly/cards.git"
+  },
+  "dependencies": {
+    "react": "^0.13.0"
+  },
+  "devDependencies": {
+    "babelify": "^5.0.4",
+    "brfs": "^1.4.0",
+    "browserify": "^9.0.3",
+    "gulp": "^3.8.11",
+    "gulp-eslint": "^0.7.0",
+    "gulp-sourcemaps": "^1.5.0",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.4",
+    "live-server": "^0.7.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^2.4.0"
+  }
+}
