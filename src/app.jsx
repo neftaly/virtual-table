@@ -14,8 +14,8 @@ let pieceStyle = {
 
 // Init
 React.render(<div>
-    <Card uuid="111" type="c-2" position={{}} rotation={{}} style={pieceStyle} />
-    <Card uuid="222" type="c-3" position={{ x: 100 }} rotation={{}} style={pieceStyle} />
-    <Card uuid="333" type="c-4" position={{ x: 200, y: 100 }} rotation={{ x: 180 }} style={pieceStyle} />
-    <Card uuid="444" type="c-5" position={{ x: 300, y: 200 }} rotation={{ z: 45 }} style={pieceStyle} />
+    <Card uuid="111" type="c-2" style={pieceStyle} position={{}} rotation={{}} />
+    <Card uuid="222" type="c-3" style={pieceStyle} position={{ x: 100, y: 100 }} rotation={{}} active={true} />
+    <Card uuid="333" type="c-4" style={pieceStyle} position={{ x: 200, y: 200 }} rotation={{ x: 180 }} />
+    <Card uuid="444" type="c-5" style={pieceStyle} position={{ x: 300, y: 300 }} rotation={{ z: 45 }} />
 </div>, document.body);

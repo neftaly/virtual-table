@@ -13,6 +13,8 @@ module.exports = React.createClass({
         let props = this.props;
         let path = "./components/card/res/";
 
+        let className = "highlight" + ((props.active) ? " active" : "");
+
         let frontImg = path + "front/" + props.type + ".jpg";
         let backImg = {
             backgroundImage: "url(" + path + "back.svg)",
@@ -24,7 +26,7 @@ module.exports = React.createClass({
                 + transform("rotate", props.rotation, "deg")
         });
 
-        return <div id={props.uuid} style={containerStyle}>
+        return <div id={props.uuid} className={className} style={containerStyle}>
             <img src={frontImg} style={styles.front}/>
             <div style={m(styles.back, backImg)} />
         </div>;
