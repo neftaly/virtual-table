@@ -1,6 +1,6 @@
 .highlight:hover, .highlight.active {
-    margin-top: -1px;
-    margin-left: -1px;
+    margin-top: -1px!important;
+    margin-left: -1px!important;
 }
 
 .highlight:hover:not(.active) {
