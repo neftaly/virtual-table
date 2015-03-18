@@ -5,6 +5,7 @@ var liveServer = require("live-server"),
 
     browserify = require("browserify"),
     watchify = require("watchify"),
+    collapse = require("bundle-collapser/plugin"),
 
     source = require("vinyl-source-stream"),
     buffer = require("vinyl-buffer"),
@@ -15,8 +16,8 @@ var liveServer = require("live-server"),
     concat = require("gulp-concat"),
     sourcemaps = require("gulp-sourcemaps"),
     //minifyCss = require("gulp-minify-css"),
-    eslint = require("gulp-eslint"),
-    uglify = require("gulp-uglify");
+    uglify = require("gulp-uglify"),
+    eslint = require("gulp-eslint");
 
 var bundler;
 
@@ -36,7 +37,7 @@ gulp.task("default", ["build", "live-server"]);
 
 gulp.task("live-server", function () {
     liveServer.start({
-        //noBrowser: true,
+        noBrowser: true,
         port: 3333,
         root: "./"
     });
@@ -92,9 +93,9 @@ gulp.task("watch-css", function () {
 
 gulp.task("js", ["lint-js", "watch-js"]);
 
-gulp.task("watch-js", bundle);
+gulp.task("watch-js", bundleJs);
 
-function bundle() {
+function bundleJs() {
     return bundler.bundle()
         .on("error", gutil.log.bind(gutil, "Browserify Error"))
         .pipe(source("app.min.js"))
@@ -105,9 +106,8 @@ function bundle() {
         .pipe(gulp.dest("./dist"));
 }
 
-bundler = watchify(browserify({
-    entries: "./src/app.jsx",
-    insertGlobals: true,
+bundler = watchify(browserify(["./src/app.jsx"], {
+    fullPaths: false,
     extensions: [
         ".js",
         ".jsx"
@@ -115,8 +115,9 @@ bundler = watchify(browserify({
 }, watchify.args))
     .transform("babelify")
     .transform("brfs")
+    .plugin(collapse)
     .on("update", lintJs)
-    .on("update", bundle)
+    .on("update", bundleJs)
     .on("log", gutil.log);
 
 
