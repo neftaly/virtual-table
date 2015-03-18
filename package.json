@@ -4,6 +4,7 @@
     "url": "https://github.com/neftaly/cards.git"
   },
   "dependencies": {
+    "ramda": "^0.11.0",
     "react": "^0.13.0"
   },
   "devDependencies": {

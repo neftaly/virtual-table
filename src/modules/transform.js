@@ -7,7 +7,7 @@
  * @param {string} [unit] - Unit postfix
  * @returns {string} un-prefixed directive
  */
-module.exports = function transform (method, points, unit) {
+export default (method, points, unit) => {
     return Object.keys(points).reduce((directives, axis) => {
         let point = points[axis];
 

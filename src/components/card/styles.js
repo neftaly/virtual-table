@@ -1,12 +1,12 @@
 "use strict";
 
-//var m = require("ramda").merge;
-var m = Object.assign;
+import R from "ramda";
+
 
 /**
  * Generate JSSS
  */
-module.exports = (() => {
+export default (() => {
 
     // Card container
     let container = {
@@ -28,12 +28,12 @@ module.exports = (() => {
     };
 
     // Front face
-    let front = m({
+    let front = R.merge({
         transform: "rotateX(0deg)"
     }, shared);
 
     // Back face
-    let back = m({
+    let back = R.merge({
         left: 0,
         top: 0,
         height: "100%",

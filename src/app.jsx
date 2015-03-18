@@ -1,9 +1,7 @@
-/*eslint no-unused-vars: 0 */
-
 "use strict";
 
-var React = require("react"),
-    Card = require("./components/card/card");
+import React from "react";
+import Card from "./components/card/card";
 
 
 let pieceStyle = {
