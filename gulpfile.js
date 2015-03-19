@@ -15,7 +15,7 @@ var liveServer = require("live-server"),
     watch = require("gulp-watch"),
     concat = require("gulp-concat"),
     sourcemaps = require("gulp-sourcemaps"),
-    //minifyCss = require("gulp-minify-css"),
+    minifyCss = require("gulp-minify-css"),
     uglify = require("gulp-uglify"),
     eslint = require("gulp-eslint");
 
@@ -101,12 +101,12 @@ function bundleJs() {
         .pipe(source("app.min.js"))
         .pipe(buffer())
         .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(sourcemaps.write("./"))
         .pipe(gulp.dest("./dist"));
 }
 
-bundler = watchify(browserify(["./src/app.jsx"], {
+bundler = watchify(browserify(["./src/client.jsx"], {
     fullPaths: false,
     extensions: [
         ".js",
