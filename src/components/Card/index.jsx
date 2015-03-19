@@ -12,7 +12,7 @@ export default class Card extends React.Component {
     render () {
 
         let props = this.props;
-        let path = "./components/card/res/";
+        let path = "./components/Card/res/";
 
         let className = "highlight" + ((props.active) ? " active" : "");
 
