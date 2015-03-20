@@ -2,10 +2,11 @@
 
 /**
  * Generate a CSS transformation directive
- * @param {string} method - Transformation method
- * @param {object} points - Transformation points (x, y, z)
- * @param {string} [unit] - Unit postfix
- * @returns {string} un-prefixed directive
+ *
+ * @param {String} method - Transformation method
+ * @param {Object} points - Transformation points (x, y, z)
+ * @param {String} [unit] - Unit postfix
+ * @returns {String} un-prefixed directive
  */
 export default (method, points, unit) => {
     return Object.keys(points).reduce((directives, axis) => {

@@ -1,34 +1,32 @@
 "use strict";
 
 import React from "react";
-import Card from "./Card";
+import { PureRenderMixin } from "react/addons";
+import iterableCursor from "../modules/iterableCursor";
+import instantiateComponent from "../modules/instantiateComponent";
 
 
-export function buildComponent(item) {
-    let [kingdom, ...type] = item.taxonomy;
-    item.type = type;
+/**
+ * A virtual table-top
+ *
+ * @extends React.ReactComponent
+ * @class Table
+ * @constructor
+ * @namespace components
+ * @param {Baobab} props.cursor
+ */
+export default React.createClass({
 
-    // Temporary
-    let style = {
-        border: "1px solid rgba(0,0,0,.12)",
-        boxShadow: "0 4px 15px rgba(0,0,0,0.24)"
-    };
+    mixins: [PureRenderMixin],
 
-    switch (kingdom) {
-    case "card":
-        return <Card specs={item} key={item.uuid} style={style} />;
-    default:
-        return "";
-    }
-}
-
-
-export default class Table extends React.Component {
-    render () {
-        let props = this.props;
+    render: function () {
+        let cursor = this.props.cursor;
+        let itemCursor = cursor.select("items");
+        let itemsCursors = iterableCursor(itemCursor);
 
         return <div>
-            { props.items.map(buildComponent) }
+            { itemsCursors.map(instantiateComponent) }
         </div>;
-    };
-};
+    }
+
+});

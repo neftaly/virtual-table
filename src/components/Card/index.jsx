@@ -1,38 +1,39 @@
 "use strict";
 
 import React from "react";
+import { PureRenderMixin } from "react/addons";
 import R from "ramda";
 import transform from "../../modules/transform";
 
-import styles from "./styles";
+export default React.createClass({
 
+    mixins: [
+        PureRenderMixin
+    ],
 
-export default class Card extends React.Component {
-
-    render () {
-
+    render: function () {
         let props = this.props;
-        let specs = props.specs;
+        let specs = props.cursor.get();
+
+        let type = specs.taxonomy[1];
+        let className = "component_" + specs.taxonomy[0];
+
+        let style = {
+            transform: transform("translate", specs.position, "px")
+                + transform("rotate", specs.rotation, "deg")
+        };
+
         let path = "./components/Card/res/";
-
-        let className = "highlight" + ((props.active) ? " active" : "");
-
-        let frontImg = `${ path }front/${ specs.type[0] }.jpg`;
-        let backImg = {
+        let frontImg = `${ path }front/${ type }.jpg`;
+        let back = {
             backgroundImage: `url(${ path }back.svg)`,
             backgroundColor: "white"
         };
 
-        let containerStyle = R.mergeAll([props.style, styles.container, {
-            transform: transform("translate", specs.position, "px")
-                + transform("rotate", specs.rotation, "deg")
-        }]);
-
-        return <div id={specs.uuid} className={className} style={containerStyle}>
-            <img src={frontImg} style={styles.front}/>
-            <div style={R.merge(styles.back, backImg)} />
+        return <div id={specs.uuid} className={className} style={style}>
+            <img src={frontImg} className={className + "-front"} />
+            <div style={back} className={className + "-back"} />
         </div>;
+    }
 
-    };
-
-};
+});

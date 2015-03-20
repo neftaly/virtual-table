@@ -15,8 +15,8 @@ var liveServer = require("live-server"),
     watch = require("gulp-watch"),
     concat = require("gulp-concat"),
     sourcemaps = require("gulp-sourcemaps"),
-    minifyCss = require("gulp-minify-css"),
-    uglify = require("gulp-uglify"),
+    //minifyCss = require("gulp-minify-css"),
+    //uglify = require("gulp-uglify"),
     eslint = require("gulp-eslint");
 
 var bundler;
@@ -95,7 +95,7 @@ gulp.task("js", ["lint-js", "watch-js"]);
 
 gulp.task("watch-js", bundleJs);
 
-function bundleJs() {
+function bundleJs () {
     return bundler.bundle()
         .on("error", gutil.log.bind(gutil, "Browserify Error"))
         .pipe(source("app.min.js"))
