@@ -30,7 +30,7 @@ export default React.createClass({
             backgroundColor: "white"
         };
 
-        return <div id={specs.uuid} className={className} style={style}>
+        return <div id={specs.uuid} className={"component " + className} style={style}>
             <img src={frontImg} className={className + "-front"} />
             <div style={back} className={className + "-back"} />
         </div>;

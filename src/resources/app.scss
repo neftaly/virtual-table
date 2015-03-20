@@ -1,14 +1,19 @@
-.highlight:hover, .highlight.active {
+.component {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.24);
+    border: 1px solid rgba(0,0,0,.12);
+}
+
+.component:hover, .component.active {
     margin-top: -1px;
     margin-left: -1px;
 }
 
-.highlight:hover:not(.active) {
+.component:hover:not(.active) {
     box-shadow: 0 4px 20px rgba(0,0,0,0.24);
     border: 2px solid rgba(0,0,0,.24);
 }
 
-.highlight.active {
+.component.active {
     box-shadow: 0 4px 40px rgba(0,0,0,0.24);
     border: 2px solid rgba(255,0,0,.24);
 }

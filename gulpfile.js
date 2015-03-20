@@ -15,7 +15,8 @@ var liveServer = require("live-server"),
     watch = require("gulp-watch"),
     concat = require("gulp-concat"),
     sourcemaps = require("gulp-sourcemaps"),
-    //minifyCss = require("gulp-minify-css"),
+    sass = require("gulp-sass"),
+    minifyCss = require("gulp-minify-css"),
     //uglify = require("gulp-uglify"),
     eslint = require("gulp-eslint");
 
@@ -69,12 +70,13 @@ gulp.task("watch-html", function () {
 gulp.task("css", ["build-css", "watch-css"]);
 
 gulp.task("build-css", function () {
-    return gulp.src("./src/**/*.css")
+    return gulp.src("./src/**/*.scss")
         .pipe(sourcemaps.init())
+        .pipe(sass())
         // A bug in minifyCss prevents "!important" from working
-        //.pipe(minifyCss({
-        //    keepSpecialComments: 0
-        //}))
+        .pipe(minifyCss({
+            keepSpecialComments: 0
+        }))
         .pipe(concat("app.min.css"))
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest("./dist"));
