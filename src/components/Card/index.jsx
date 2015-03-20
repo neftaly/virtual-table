@@ -7,16 +7,19 @@ import transform from "../../modules/transform";
 
 export default React.createClass({
 
-    mixins: [
-        PureRenderMixin
-    ],
+    mixins: [PureRenderMixin],
 
     render: function () {
         let props = this.props;
-        let specs = props.cursor.get();
+        let cursor = props.cursor;
+        let specs = cursor.get();
 
-        let type = specs.taxonomy[1];
-        let className = "component_" + specs.taxonomy[0];
+        cursor.on("update", () => {
+            this.forceUpdate();
+        });
+
+        let [kingdom, type] = specs.taxonomy;
+        let className = "component_" + kingdom;
 
         let style = {
             transform: transform("translate", specs.position, "px")
@@ -30,9 +33,18 @@ export default React.createClass({
             backgroundColor: "white"
         };
 
+
+        let move = (e) => {
+            console.log(e);
+            cursor.select("position").select("x").edit(
+                specs.position.x + 10
+            );
+        };
+
+
         return <div id={specs.uuid} className={"component " + className} style={style}>
             <img src={frontImg} className={className + "-front"} />
-            <div style={back} className={className + "-back"} />
+            <div style={back} className={className + "-back"} onClick={move} />
         </div>;
     }
 

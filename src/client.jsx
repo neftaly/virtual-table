@@ -39,9 +39,7 @@ let stateTree = new Baobab({
     ]
 });
 
-
 let isomorphic = true;
-
 if (process.browser || !isomorphic) {
     // We're running in a browser; attach to the DOM
     React.render(<Table cursor={stateTree} />, document.body);

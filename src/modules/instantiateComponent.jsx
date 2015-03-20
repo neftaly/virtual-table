@@ -1,6 +1,7 @@
 "use strict";
 
 import React from "react";
+import R from "ramda";
 import Dummy from "../components/Dummy";
 import Card from "../components/Card";
 

@@ -1,6 +1,7 @@
 "use strict";
 
 import React from "react";
+import { PureRenderMixin } from "react/addons";
 
 
 /**
@@ -14,11 +15,13 @@ import React from "react";
  */
 export default React.createClass({
 
+    mixins: [PureRenderMixin],
+
     render: function () {
         let cursor = this.props.cursor;
         let status = (cursor.get() !== undefined) ? "pass" : "fail";
 
-        return <div>{ status }</div>;
+        return <div style="display:none">{ status }</div>;
     }
 
 });
