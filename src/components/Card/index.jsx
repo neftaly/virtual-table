@@ -1,50 +1,48 @@
 "use strict";
 
 import React from "react";
-import { PureRenderMixin } from "react/addons";
-import R from "ramda";
+import { shouldComponentUpdate } from "omniscient";
 import transform from "../../modules/transform";
+import buildCssClassName from "../../modules/buildCssClassName";
 
 export default React.createClass({
 
-    mixins: [PureRenderMixin],
+    mixins: [{ shouldComponentUpdate }],
 
     render: function () {
-        let props = this.props;
-        let cursor = props.cursor;
-        let specs = cursor.get();
+        let itemCursor = this.props.cursor;
+        let specs = itemCursor.toJS(); // TODO: Better ImmutableJS interaction
 
-        cursor.on("update", () => {
-            this.forceUpdate();
-        });
+        let className = buildCssClassName(specs.taxonomy);
+        let path = "./components/Card/res/";
 
-        let [kingdom, type] = specs.taxonomy;
-        let className = "component_" + kingdom;
-
-        let style = {
+        // Container-specific style (transformations, etc)
+        let containerStyle = {
             transform: transform("translate", specs.position, "px")
                 + transform("rotate", specs.rotation, "deg")
         };
 
-        let path = "./components/Card/res/";
-        let frontImg = `${ path }front/${ type }.jpg`;
-        let back = {
-            backgroundImage: `url(${ path }back.svg)`,
-            backgroundColor: "white"
+
+        let move = () => {
+            itemCursor.cursor("position").update("x", (x) => {
+                return x + 10;
+            });
         };
 
 
-        let move = (e) => {
-            console.log(e);
-            cursor.select("position").select("x").edit(
-                specs.position.x + 10
-            );
-        };
+        return <div
+            id={specs.uuid}
+            style={containerStyle}
+        className={className("component")} >
 
+            <img
+                src={`${ path }front/${ specs.taxonomy[1] }.jpg`}
+            className={className("front")} />
 
-        return <div id={specs.uuid} className={"component " + className} style={style}>
-            <img src={frontImg} className={className + "-front"} />
-            <div style={back} className={className + "-back"} onClick={move} />
+            <div
+                onClick={move}
+            className={className("back")} />
+
         </div>;
     }
 

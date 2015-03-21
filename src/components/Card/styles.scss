@@ -14,6 +14,7 @@
     backface-visibility: hidden;
     display: inline-block;
     border-radius: inherit;
+    background-image: url("../src/components/Card/res/back.svg");
 }
 
 .component_card-front {
@@ -28,4 +29,5 @@
     transform: rotateY(180deg);
     backface-visibility: hidden;
     background-size: 500%;
+    background-color: white;
 }

@@ -1,10 +1,9 @@
 "use strict";
 
 import React from "react";
-import { PureRenderMixin } from "react/addons";
-import iterableCursor from "../modules/iterableCursor";
-import instantiateComponent from "../modules/instantiateComponent";
+import { shouldComponentUpdate } from "omniscient";
 
+import Card from "../components/Card";
 
 /**
  * A virtual table-top
@@ -17,15 +16,18 @@ import instantiateComponent from "../modules/instantiateComponent";
  */
 export default React.createClass({
 
-    mixins: [PureRenderMixin],
+    mixins: [{ shouldComponentUpdate }],
+
+    piece: function(itemCursor) {
+        let uuid = itemCursor.cursor("uuid").deref();
+        return <Card cursor={itemCursor} key={uuid} />;
+    },
 
     render: function () {
-        let cursor = this.props.cursor;
-        let itemCursor = cursor.select("items");
-        let itemsCursors = iterableCursor(itemCursor);
+        let itemsCursor = this.props.cursor;
 
         return <div>
-            { itemsCursors.map(instantiateComponent) }
+            { itemsCursor.toArray().map(this.piece) }
         </div>;
     }
 

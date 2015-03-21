@@ -1,11 +1,11 @@
 "use strict";
 
 import React from "react";
-import Baobab from "baobab";
+import Immstruct from "immstruct";
 import Table from "./components/Table";
 
 
-let stateTree = new Baobab({
+let state = new Immstruct({
     items: [
         {
             uuid: "1232jhkj4h2",
@@ -39,11 +39,11 @@ let stateTree = new Baobab({
     ]
 });
 
-let isomorphic = true;
-if (process.browser || !isomorphic) {
-    // We're running in a browser; attach to the DOM
-    React.render(<Table cursor={stateTree} />, document.body);
-} else {
-    // We're running on the server; return a string for handlebars
-    module.exports = React.renderToString(<Table cursor={stateTree} />);
-}
+
+let render = function() {
+    React.render(<Table cursor={ state.cursor("items") } />, document.body);
+};
+
+
+render();
+state.on("swap", render);

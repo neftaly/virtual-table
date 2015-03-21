@@ -10,7 +10,7 @@
  */
 export default (method, points, unit) => {
     return Object.keys(points).reduce((directives, axis) => {
-        let point = points[axis];
+        let point = points[axis] || 0;
 
         if (!isNaN(point) && unit) {
             point = point + unit;
