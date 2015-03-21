@@ -3,7 +3,7 @@
 import React from "react";
 import { shouldComponentUpdate } from "omniscient";
 
-import Card from "../components/Card";
+import Piece from "../components/Piece";
 
 /**
  * A virtual table-top
@@ -18,16 +18,17 @@ export default React.createClass({
 
     mixins: [{ shouldComponentUpdate }],
 
-    piece: function(itemCursor) {
+    validPiece: function(itemCursor) {
         let uuid = itemCursor.cursor("uuid").deref();
-        return <Card cursor={itemCursor} key={uuid} />;
+        let type = itemCursor.cursor("taxonomy").cursor(0).deref();
+        return <Piece key={uuid} type={type} cursor={itemCursor} />;
     },
 
     render: function () {
         let itemsCursor = this.props.cursor;
 
         return <div>
-            { itemsCursor.toArray().map(this.piece) }
+            { itemsCursor.toArray().map(this.validPiece) }
         </div>;
     }
 

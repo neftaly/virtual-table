@@ -2,9 +2,19 @@
 
 import React from "react";
 import { shouldComponentUpdate } from "omniscient";
-import transform from "../../modules/transform";
-import buildCssClassName from "../../modules/buildCssClassName";
+import transform from "../../../modules/transform";
+import buildCssClassName from "../../../modules/buildCssClassName";
 
+
+/**
+ * A playing-card game piece
+ *
+ * @extends React.ReactComponent
+ * @class Piece
+ * @constructor
+ * @namespace components
+ * @param {Immstruct} props.cursor
+ */
 export default React.createClass({
 
     mixins: [{ shouldComponentUpdate }],
@@ -14,7 +24,7 @@ export default React.createClass({
         let specs = itemCursor.toJS(); // TODO: Better ImmutableJS interaction
 
         let className = buildCssClassName(specs.taxonomy);
-        let path = "./components/Card/res/";
+        let path = "./components/Piece/Card/res";
 
         // Container-specific style (transformations, etc)
         let containerStyle = {
@@ -36,7 +46,7 @@ export default React.createClass({
         className={className("component")} >
 
             <img
-                src={`${ path }front/${ specs.taxonomy[1] }.jpg`}
+                src={`${ path }/front/${ specs.taxonomy[1] }.jpg`}
             className={className("front")} />
 
             <div

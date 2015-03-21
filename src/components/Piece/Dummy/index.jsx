@@ -1,25 +1,25 @@
 "use strict";
 
 import React from "react";
-import { PureRenderMixin } from "react/addons";
+import { shouldComponentUpdate } from "omniscient";
 
 
 /**
- * Dummy component, for tests and the like.
+ * A dummy game piece, for tests and the like.
  *
  * @extends React.ReactComponent
  * @class Table
  * @constructor
  * @namespace components
- * @param {Baobab} props.cursor
+ * @param {Immstruct} props.cursor
  */
 export default React.createClass({
 
-    mixins: [PureRenderMixin],
+    mixins: [{ shouldComponentUpdate }],
 
     render: function () {
         let cursor = this.props.cursor;
-        let status = (cursor.get() !== undefined) ? "pass" : "fail";
+        let status = (cursor.cursor() !== undefined) ? "pass" : "fail";
 
         return <div style="display:none">{ status }</div>;
     }
